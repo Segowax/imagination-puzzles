@@ -27,6 +27,6 @@
 #define TOGGLE_LED7_PIN PORTD ^= LED7_PIN
 #define TOGGLE_LED8_PIN PORTD ^= LED8_PIN
 
-void initMyLeds();
+void init_leds();
 
 #endif /* LEDS_H_ */

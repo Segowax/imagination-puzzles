@@ -21,21 +21,21 @@ int main(void) {
 			7, 3, 1 };
 	uint8_t i = 0;
 
-	initMyLeds();
-	initMyButtons();
+	init_leds();
+	init_buttons();
 
+	// enable global interrupts - secret function
 	sei();
-	initLedDisplay();
-	countToZeroFrom(1000, 300);
+
 	while (1) {
-		if (isKeyDown(1)) {
+		if (is_key_down(1)) {
 			LEDS_PORT = 0xff;
 			i = 0;
-			while (isKeyDown(1)) {
+			while (is_key_down(1)) {
 				_delay_ms(1);
 			}
 		}
-		if (isKeyDown(2)) {
+		if (is_key_down(2)) {
 			i = 1;
 			for (;;) {
 				while (i < 128) {
@@ -48,26 +48,28 @@ int main(void) {
 					LEDS_PORT = ~i;
 					_delay_ms(50);
 				}
-				if (isKeyDown(1))
+				if (is_key_down(1))
 					break;
 			}
 		}
-		if (isKeyDown(3)) {
+		if (is_key_down(3)) {
 			i = 0;
 			for (;;) {
 				LEDS_PORT = ~tab[i++];
 				_delay_ms(50);
 				if (i == sizeof(tab))
 					i = 0;
-				if (isKeyDown(1)) {
+				if (is_key_down(1)) {
 					break;
 				}
 			}
 		}
-		if (isKeyDown(4)) {
+		if (is_key_down(4)) {
+			init_led_display();
+			count_to_zero_in(60);
 		}
-		if (isKeyDown(5)) {
-			disposeLedDisplay();
+		if (is_key_down(5)) {
+			dispose_led_display();
 		}
 	}
 }

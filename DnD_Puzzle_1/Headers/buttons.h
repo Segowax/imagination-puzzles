@@ -21,7 +21,7 @@
 #define IS_BUTTON4_DOWN !(PINB & BUTTON4_PIN)
 #define IS_BUTTON5_DOWN !(PINB & BUTTON5_PIN)
 
-void initMyButtons();
-uint8_t isKeyDown(uint8_t key);
+void init_buttons();
+uint8_t is_key_down(uint8_t key);
 
 #endif /* BUTTONS_H_ */

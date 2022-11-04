@@ -10,14 +10,14 @@
 
 #include "../Headers/buttons.h"
 
-void initMyButtons() {
+void init_buttons() {
 	BUTTONS_DDR &= ~(BUTTON1_PIN | BUTTON2_PIN | BUTTON3_PIN | BUTTON4_PIN
 			| BUTTON5_PIN);
 	BUTTONS_PORT |=
 	BUTTON1_PIN | BUTTON2_PIN | BUTTON3_PIN | BUTTON4_PIN | BUTTON5_PIN; // enable internal VCC resistor
 }
 
-uint8_t isKeyDown(uint8_t key) {
+uint8_t is_key_down(uint8_t key) {
 	switch (key) {
 	case 1:
 		_delay_ms(20);

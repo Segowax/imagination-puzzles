@@ -24,24 +24,24 @@
 #define SEGMENT_F (1 << PC5)
 #define SEGMENT_G (1 << PC6)
 #define SEGMENT_H (1 << PC7)
-#define SHOW_ZERO SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_E | SEGMENT_F
-#define SHOW_ONE SEGMENT_B | SEGMENT_C
-#define SHOW_TWO SEGMENT_A | SEGMENT_B | SEGMENT_D | SEGMENT_E | SEGMENT_G
-#define SHOW_THREE SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_G
-#define SHOW_FOUR SEGMENT_B | SEGMENT_C | SEGMENT_F | SEGMENT_G
-#define SHOW_FIVE SEGMENT_A | SEGMENT_F | SEGMENT_G | SEGMENT_C | SEGMENT_D
-#define SHOW_SIX SEGMENT_A | SEGMENT_F | SEGMENT_E | SEGMENT_D | SEGMENT_C | SEGMENT_G
-#define SHOW_SEVEN SEGMENT_A | SEGMENT_B | SEGMENT_C
-#define SHOW_EIGHT SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_E | SEGMENT_F | SEGMENT_G
-#define SHOW_NINE SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_F | SEGMENT_G
+#define SHOW_ZERO ~(SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_E | SEGMENT_F)
+#define SHOW_ONE ~(SEGMENT_B | SEGMENT_C)
+#define SHOW_TWO ~(SEGMENT_A | SEGMENT_B | SEGMENT_D | SEGMENT_E | SEGMENT_G)
+#define SHOW_THREE ~(SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_G)
+#define SHOW_FOUR ~(SEGMENT_B | SEGMENT_C | SEGMENT_F | SEGMENT_G)
+#define SHOW_FIVE ~(SEGMENT_A | SEGMENT_F | SEGMENT_G | SEGMENT_C | SEGMENT_D)
+#define SHOW_SIX ~(SEGMENT_A | SEGMENT_F | SEGMENT_E | SEGMENT_D | SEGMENT_C | SEGMENT_G)
+#define SHOW_SEVEN ~(SEGMENT_A | SEGMENT_B | SEGMENT_C)
+#define SHOW_EIGHT ~(SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_E | SEGMENT_F | SEGMENT_G)
+#define SHOW_NINE ~(SEGMENT_A | SEGMENT_B | SEGMENT_C | SEGMENT_D | SEGMENT_F | SEGMENT_G)
 
-volatile uint8_t digit1;
-volatile uint8_t digit2;
-volatile uint8_t digit3;
-volatile uint8_t digit4;
+extern volatile uint8_t digit1;
+extern volatile uint8_t digit2;
+extern volatile uint8_t digit3;
+extern volatile uint8_t digit4;
 
-void initLedDisplay();
-void disposeLedDisplay();
-void countToZeroFrom(uint32_t number, uint16_t seconds);
+void init_led_display();
+void dispose_led_display();
+void count_to_zero_in(uint16_t seconds);
 
 #endif /* HEADERS_LED_DISPLAY_H_ */
