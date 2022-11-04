@@ -8,44 +8,44 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#include "../Headers/buttons.h"
+#include "../Headers/keys.h"
 
 void init_buttons() {
-	BUTTONS_DDR &= ~(BUTTON1_PIN | BUTTON2_PIN | BUTTON3_PIN | BUTTON4_PIN
-			| BUTTON5_PIN);
-	BUTTONS_PORT |=
-	BUTTON1_PIN | BUTTON2_PIN | BUTTON3_PIN | BUTTON4_PIN | BUTTON5_PIN; // enable internal VCC resistor
+	KEYS_DDR &= ~(KEY1_PIN | KEY2_PIN | KEY3_PIN | KEY4_PIN
+			| KEY5_PIN);
+	KEYS_PORT |=
+	KEY1_PIN | KEY2_PIN | KEY3_PIN | KEY4_PIN | KEY5_PIN; // enable internal VCC resistor
 }
 
 uint8_t is_key_down(uint8_t key) {
 	switch (key) {
 	case 1:
 		_delay_ms(20);
-		if (IS_BUTTON1_DOWN) {
+		if (IS_KEY1_DOWN) {
 			return 1;
 		}
 		break;
 	case 2:
 		_delay_ms(20);
-		if (IS_BUTTON2_DOWN) {
+		if (IS_KEY2_DOWN) {
 			return 1;
 		}
 		break;
 	case 3:
 		_delay_ms(20);
-		if (IS_BUTTON3_DOWN) {
+		if (IS_KEY3_DOWN) {
 			return 1;
 		}
 		break;
 	case 4:
 		_delay_ms(20);
-		if (IS_BUTTON4_DOWN) {
+		if (IS_KEY4_DOWN) {
 			return 1;
 		}
 		break;
 	case 5:
 		_delay_ms(20);
-		if (IS_BUTTON5_DOWN) {
+		if (IS_KEY5_DOWN) {
 			return 1;
 		}
 		break;

@@ -4,17 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Helpers/buttons.c \
+../Helpers/keys.c \
 ../Helpers/led_display.c \
 ../Helpers/leds.c 
 
 OBJS += \
-./Helpers/buttons.o \
+./Helpers/keys.o \
 ./Helpers/led_display.o \
 ./Helpers/leds.o 
 
 C_DEPS += \
-./Helpers/buttons.d \
+./Helpers/keys.d \
 ./Helpers/led_display.d \
 ./Helpers/leds.d 
 

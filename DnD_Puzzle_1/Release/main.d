@@ -1,8 +1,8 @@
-main.o: ../main.c ../Headers/leds.h ../Headers/buttons.h \
+main.o: ../main.c ../Headers/keys.h ../Headers/leds.h \
  ../Headers/led_display.h
 
-../Headers/leds.h:
+../Headers/keys.h:
 
-../Headers/buttons.h:
+../Headers/leds.h:
 
 ../Headers/led_display.h:
