@@ -9,7 +9,6 @@
 #include <util/delay.h>
 
 #include "../Headers/led_display.h"
-
 #include "../Headers/keys.h"
 
 volatile uint8_t digit1;
