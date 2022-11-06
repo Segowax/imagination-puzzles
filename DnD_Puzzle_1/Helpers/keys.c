@@ -11,8 +11,7 @@
 #include "../Headers/keys.h"
 
 void init_buttons() {
-	KEYS_DDR &= ~(KEY1_PIN | KEY2_PIN | KEY3_PIN | KEY4_PIN
-			| KEY5_PIN);
+	KEYS_DDR &= ~(KEY1_PIN | KEY2_PIN | KEY3_PIN | KEY4_PIN | KEY5_PIN);
 	KEYS_PORT |=
 	KEY1_PIN | KEY2_PIN | KEY3_PIN | KEY4_PIN | KEY5_PIN; // enable internal VCC resistor
 }
