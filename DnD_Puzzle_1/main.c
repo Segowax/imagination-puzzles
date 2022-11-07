@@ -26,7 +26,7 @@ int main(void) {
 	while (1) {
 		if (number != 0 || !IS_KEY1_DOWN)
 			number = count_to_zero_continue(number);
-		if (IS_KEY2_DOWN) {
+		if (IS_KEY1_DOWN && IS_KEY2_DOWN) {
 			ON_OUTPUT1_PIN;
 			_delay_ms(1000);
 			OFF_OUTPUT1_PIN;
