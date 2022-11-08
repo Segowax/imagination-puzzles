@@ -26,14 +26,25 @@ static uint8_t i = 1;
 // interrupt logic for timer/counter0
 ISR(TIMER0_COMP_vect) {
 	ANODE_PORT = (ANODE_PORT & 0xf0) | (~i & 0x0f);
-	if (i == 1)
-		SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit1]);
-	else if (i == 2)
-		SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit2]);
-	else if (i == 4)
-		SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit3]);
-	else if (i == 8)
-		SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit4]);
+	if (lang == 1) {
+		if (i == 1)
+			SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit1]);
+		else if (i == 2)
+			SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit2]);
+		else if (i == 4)
+			SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit3]);
+		else if (i == 8)
+			SEGMENTS_PORT = pgm_read_byte(&elfDigitsTab[digit4]);
+	} else if (lang == 2) {
+		if (i == 1)
+			SEGMENTS_PORT = pgm_read_byte(&commonDigitsTab[digit1]);
+		else if (i == 2)
+			SEGMENTS_PORT = pgm_read_byte(&commonDigitsTab[digit2]);
+		else if (i == 4)
+			SEGMENTS_PORT = pgm_read_byte(&commonDigitsTab[digit3]);
+		else if (i == 8)
+			SEGMENTS_PORT = pgm_read_byte(&commonDigitsTab[digit4]);
+	}
 	i <<= 1;
 	if (i > 8)
 		i = 1;

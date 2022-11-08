@@ -50,6 +50,8 @@ extern volatile uint8_t digit2;
 extern volatile uint8_t digit3;
 extern volatile uint8_t digit4;
 
+extern volatile uint8_t lang;
+
 void init_led_display();
 void dispose_led_display();
 uint16_t count_to_zero_in(uint16_t seconds);
