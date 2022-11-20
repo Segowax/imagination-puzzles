@@ -21,7 +21,7 @@ int main(void) {
 	// enable global interrupts - secret function
 	sei();
 
-	uint16_t number = count_to_zero_in(300);
+	uint16_t number = count_to_zero_in(600);
 
 	while (1) {
 		if (number != 0 || !IS_KEY1_DOWN)
