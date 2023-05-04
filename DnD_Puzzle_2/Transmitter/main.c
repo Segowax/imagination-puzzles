@@ -15,7 +15,7 @@
 int main() {
 	USART_Init(__UBRR);
 	int counter = 0;
-	int table_length = 7;
+	int table_length = 6;
 
 	while (1) {
 		if (table_length) {
@@ -24,8 +24,9 @@ int main() {
 				_delay_ms(1000);
 			}
 			counter++;
-			if (counter == 1) {
-				table_length--;
+			if (counter == 100) {
+				if (table_length != 1)
+					table_length--;
 				counter = 0;
 			}
 		}

@@ -15,29 +15,25 @@ void USART_Init(uint16_t baud);
 uint8_t USART_Receive();
 
 int main() {
-	DDRB |= (1<<PB0);
+	DDRB |= (1 << PB0);
 	USART_Init(__UBRR);
-	uint8_t receivedData;
-
-	while (1)
-	{
-		receivedData = USART_Receive();
-		if(receivedData)
-			PORTB ^= (1<<PB0);
-		receivedData = 0;
+	while (1) {
+		if (USART_Receive()) {
+			PORTB ^= (1 << PB0);
+		}
 	}
 }
 
-void USART_Init(uint16_t ubrr)
-{
-	UBRRH = (uint8_t)(ubrr >> 8);
-	UBRRL = (uint8_t)ubrr;
-	UCSRB = (1<<RXEN) | (1<<TXEN);
-	UCSRC = (1<<URSEL) | (3<<UCSZ0);
+void USART_Init(uint16_t ubrr) {
+	UBRRH = (uint8_t) (ubrr >> 8);
+	UBRRL = (uint8_t) ubrr;
+	UCSRB = (1 << RXEN) | (1 << TXEN);
+	UCSRC = (1 << URSEL) | (3 << UCSZ0);
 }
 
-uint8_t USART_Receive()
-{
-	while(!(UCSRA & (1<<RXC)));
+uint8_t USART_Receive() {
+	while (!(UCSRA & (1 << RXC)))
+		;
+
 	return UDR;
 }
