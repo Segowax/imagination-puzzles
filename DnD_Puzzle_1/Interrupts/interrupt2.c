@@ -12,7 +12,7 @@
 // lang = 1 - common language
 // lang = 2 - elvish language
 
-volatile uint8_t lang = 2;
+volatile uint8_t lang = 1;
 
 ISR(INT2_vect) {
 	lang <<= lang;

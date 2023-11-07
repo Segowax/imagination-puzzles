@@ -6,6 +6,7 @@
  */
 
 #include <avr/io.h>
+#include <stdbool.h>
 #include <util/delay.h>
 
 #include "../Headers/led_display.h"
@@ -53,83 +54,28 @@ uint16_t count_to_zero_in(uint16_t seconds) {
 		number = 0;
 	else
 		number = seconds * 10;
-	digit1 = (number - (number % 1000)) / 1000;
-	number %= 1000;
-	digit2 = (number - (number % 100)) / 100;
-	number %= 100;
-	digit3 = (number - (number % 10)) / 10;
-	number %= 10;
-	digit4 = number;
-	for (; digit1 >= 0; digit1--) {
-		if (digit1 == 255 && digit2 == 9 && digit3 == 9 && digit4 == 9) {
-			digit1 = digit2 = digit3 = digit4 = 0;
-			break;
-		}
-		for (; digit2 >= 0; digit2--) {
-			if (digit2 == 255 && digit3 == 9 && digit4 == 9) {
-				digit2 = 9;
-				break;
-			}
-			for (; digit3 >= 0; digit3--) {
-				if (digit3 == 255 && digit4 == 9) {
-					digit3 = 9;
-					break;
-				}
-				for (; digit4 >= 0; digit4--) {
-					if (digit4 == 255) {
-						digit4 = 9;
-						break;
-					} else {
-						_delay_ms(100);
-						if (IS_KEY1_DOWN)
-							goto stop_counting;
-					}
-				}
-			}
-		}
-	}
-	stop_counting:
 
-	return digit1 * 1000 + digit2 * 100 + digit3 * 10 + digit4;
+	return count_to_zero_continue(number);
 }
 
 uint16_t count_to_zero_continue(uint16_t number) {
-	digit1 = (number - (number % 1000)) / 1000;
-	number %= 1000;
-	digit2 = (number - (number % 100)) / 100;
-	number %= 100;
-	digit3 = (number - (number % 10)) / 10;
-	number %= 10;
-	digit4 = number;
-	for (; digit1 >= 0; digit1--) {
-		if (digit1 == 255 && digit2 == 9 && digit3 == 9 && digit4 == 9) {
-			digit1 = digit2 = digit3 = digit4 = 0;
-			break;
-		}
-		for (; digit2 >= 0; digit2--) {
-			if (digit2 == 255 && digit3 == 9 && digit4 == 9) {
-				digit2 = 9;
-				break;
-			}
-			for (; digit3 >= 0; digit3--) {
-				if (digit3 == 255 && digit4 == 9) {
-					digit3 = 9;
-					break;
-				}
-				for (; digit4 >= 0; digit4--) {
-					if (digit4 == 255) {
-						digit4 = 9;
-						break;
-					} else {
-						_delay_ms(100);
-						if (IS_KEY1_DOWN)
-							goto stop_counting;
-					}
-				}
-			}
-		}
-	}
-	stop_counting:
+	uint16_t bufor = number;
+	while (!IS_KEY1_DOWN) {
+		number = bufor;
+		digit1 = (number - (number % 1000)) / 1000;
+		number %= 1000;
+		digit2 = (number - (number % 100)) / 100;
+		number %= 100;
+		digit3 = (number - (number % 10)) / 10;
+		number %= 10;
+		digit4 = number;
 
-	return digit1 * 1000 + digit2 * 100 + digit3 * 10 + digit4;;
+		if (bufor == 0)
+			break;
+
+		_delay_ms(100);
+		bufor--;
+	}
+
+	return digit1 * 1000 + digit2 * 100 + digit3 * 10 + digit4;
 }
