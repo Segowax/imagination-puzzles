@@ -6,7 +6,6 @@
  */
 
 #include <avr/io.h>
-#include <stdbool.h>
 #include <util/delay.h>
 
 #include "../Headers/led_display.h"
@@ -59,9 +58,9 @@ uint16_t count_to_zero_in(uint16_t seconds) {
 }
 
 uint16_t count_to_zero_continue(uint16_t number) {
-	uint16_t bufor = number;
+	uint16_t buffer = number;
 	while (!IS_KEY1_DOWN) {
-		number = bufor;
+		number = buffer;
 		digit1 = (number - (number % 1000)) / 1000;
 		number %= 1000;
 		digit2 = (number - (number % 100)) / 100;
@@ -70,11 +69,11 @@ uint16_t count_to_zero_continue(uint16_t number) {
 		number %= 10;
 		digit4 = number;
 
-		if (bufor == 0)
+		if (buffer == 0)
 			break;
 
 		_delay_ms(100);
-		bufor--;
+		buffer--;
 	}
 
 	return digit1 * 1000 + digit2 * 100 + digit3 * 10 + digit4;
