@@ -48,4 +48,7 @@
 #define DDR(x) SDDR(x)
 #define SDDR(x) (DDR##x)
 
+void init_lcd();
+void data_dir_out();
+
 #endif /* LCD_LCD_H_ */

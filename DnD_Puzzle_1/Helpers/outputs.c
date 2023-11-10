@@ -1,17 +1,15 @@
 /*
- * leds.c
+ * outputs.c
  *
- *  Created on: 1 lis 2022
+ *  Created on: Nov 10, 2023
  *      Author: KosmicznyBandyta
  */
 
-#include <avr/io.h>
-
 #include "../Headers/outputs.h"
 
-void init_leds() {
-	OUTPUTS_DDR |= OUTPUT1_PIN | OUTPUT2_PIN | OUTPUT3_PIN | OUTPUT4_PIN
-			| OUTPUT5_PIN | OUTPUT6_PIN | OUTPUT7_PIN | OUTPUT8_PIN;
-	OUTPUTS_PORT |= OUTPUT1_PIN | OUTPUT2_PIN | OUTPUT3_PIN | OUTPUT4_PIN
-			| OUTPUT5_PIN | OUTPUT6_PIN | OUTPUT7_PIN | OUTPUT8_PIN;
+void init_outputs() {
+	// set all outputs
+	DDR(SPEAKER_PORT) |= (1 << SPEAKER);
+	// set state of all outputs connected to VCC to high
+	PORT(SPEAKER_PORT) |= (1 << SPEAKER);
 }

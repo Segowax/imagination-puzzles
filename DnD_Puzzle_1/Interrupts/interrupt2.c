@@ -9,7 +9,7 @@
 
 #include "../Headers/led_display.h"
 
-// lang = 1 - common language
+// lang = 1 - common language (Arabic numerals)
 // lang = 2 - elvish language
 
 volatile uint8_t lang = 2;
