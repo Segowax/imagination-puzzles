@@ -5,7 +5,12 @@
  *      Author: KosmicznyBandyta
  */
 
+#include "lcd/lcd.h"
+
 int main() {
+
+	init_lcd();
+
 	while (1) {
 
 	}

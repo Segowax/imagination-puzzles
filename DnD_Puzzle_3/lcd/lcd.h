@@ -5,27 +5,13 @@
  *      Author: KosmicznyBandyta
  */
 
+#include "../configuration.h"
+
+#include <avr/io.h>
+#include <util/delay.h>
+
 #ifndef LCD_LCD_H_
 #define LCD_LCD_H_
-
-#define LCD_Y 2
-#define LCD_X 16
-#define USE_RW 1
-#define LCD_D7PORT C
-#define LCD_D6PORT C
-#define LCD_D5PORT C
-#define LCD_D4PORT C
-#define LCD_D7 4
-#define LCD_D6 3
-#define LCD_D5 2
-#define LCD_D4 1
-
-#define LCD_RSPORT B
-#define LCD_RWPORT B
-#define LCD_EPORT B
-#define LCD_RS 2
-#define LCD_RW 1
-#define LCD_E 0
 
 #if ((LCD_Y == 4) && (LCD_X == 20))
 #define LCD_LINE1 0x00
@@ -48,7 +34,20 @@
 #define DDR(x) SDDR(x)
 #define SDDR(x) (DDR##x)
 
+#define SET_RS PORT(LCD_RSPORT) |= (1 << LCD_RS)
+#define SET_RW PORT(LCD_RWPORT) |= (1 << LCD_RW)
+#define SET_E PORT(LCD_EPORT) |= (1 << LCD_E)
+#define CLR_RS PORT(LCD_RSPORT) &= ~(1 << LCD_RS)
+#define CLR_RW PORT(LCD_RWPORT) &= ~(1 << LCD_RW)
+#define CLR_E PORT(LCD_EPORT) &= ~(1 << LCD_E)
+
 void init_lcd();
 void data_dir_out();
+void data_dir_in();
+void lcd_write_byte(unsigned char _data);
+void lcd_write_cmd(uint8_t cmd);
+void lcd_write_data(uint8_t data);
+uint8_t lcd_read_byte(void);
+uint8_t check_BF(void);
 
 #endif /* LCD_LCD_H_ */
