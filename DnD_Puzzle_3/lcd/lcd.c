@@ -7,13 +7,13 @@
 
 #include "lcd.h"
 
+// private zone
 static inline void lcd_send_half(uint8_t data);
 
-void init_lcd() {
+void init_lcd(void) {
 	data_dir_out();
 	DDR(LCD_RSPORT) |= (1 << LCD_RS);
 	DDR(LCD_EPORT) |= (1 << LCD_E);
-
 #if USE_RW == 1
 	DDR(LCD_RWPORT) |= (1 << LCD_RW);
 #endif
@@ -35,30 +35,37 @@ void init_lcd() {
 	lcd_send_half(0x03);
 	CLR_E;
 	_delay_ms(4.1);
+
 	SET_E;
 	lcd_send_half(0x03);
 	CLR_E;
 	_delay_us(100);
+
 	SET_E;
 	lcd_send_half(0x03);
 	CLR_E;
 	_delay_us(100);
+
 	SET_E;
 	lcd_send_half(0x02);
 	CLR_E;
 	_delay_us(100);
 
-	//lcd_write_cmd()
+	lcd_write_cmd(LCDC_FUNC | LCDC_FUNC_4B | LCD_FUNC_2L | LCD_FUNC_5x7);
+	lcd_write_cmd(LCDC_ONOFF | LCDC_CURSOR_OFF);
+	lcd_write_cmd(LCDC_ONOFF | LCDC_DISPLAY_ON);
+	lcd_write_cmd(LCDC_ENTRY | LCDC_ENTRYR);
+	lcd_cls();
 }
 
-void data_dir_out() {
+void data_dir_out(void) {
 	DDR(LCD_D7PORT) |= (1 << LCD_D7);
 	DDR(LCD_D6PORT) |= (1 << LCD_D6);
 	DDR(LCD_D5PORT) |= (1 << LCD_D5);
 	DDR(LCD_D4PORT) |= (1 << LCD_D4);
 }
 
-void data_dir_in() {
+void data_dir_in(void) {
 	DDR(LCD_D7PORT) &= ~(1 << LCD_D7);
 	DDR(LCD_D6PORT) &= ~(1 << LCD_D6);
 	DDR(LCD_D5PORT) &= ~(1 << LCD_D5);
@@ -156,4 +163,15 @@ void lcd_write_cmd(uint8_t cmd) {
 void lcd_write_data(uint8_t data) {
 	SET_RS;
 	lcd_write_byte(data);
+}
+
+void lcd_str(char *str) {
+	while(*str) lcd_write_data(*str++);
+}
+
+void lcd_cls(void) {
+	lcd_write_cmd(LCDC_CLEAR);
+#if USE_RW == 0
+	_delay_ms(4.9);
+#endif
 }

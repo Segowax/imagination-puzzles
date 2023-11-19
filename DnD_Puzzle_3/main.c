@@ -10,8 +10,10 @@
 int main() {
 
 	init_lcd();
+	lcd_str("Test test 123..");
+
+	_delay_ms(1000);
 
 	while (1) {
-
 	}
 }

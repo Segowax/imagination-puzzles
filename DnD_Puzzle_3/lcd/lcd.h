@@ -41,12 +41,45 @@
 #define CLR_RW PORT(LCD_RWPORT) &= ~(1 << LCD_RW)
 #define CLR_E PORT(LCD_EPORT) &= ~(1 << LCD_E)
 
-void init_lcd();
-void data_dir_out();
-void data_dir_in();
+/* LCD HD44780 commends */
+// Clear Display
+#define LCDC_CLEAR 0x01
+
+// Cursor home
+#define LCDC_HOME 0x02
+
+// Entry mode set
+#define LCDC_ENTRY 0x04
+	#define LCDC_ENTRYR 0x02
+	#define LCDC_ENTRYL	0
+	#define LCDC_MOVE 0x01
+
+// Display On/Off
+#define LCDC_ONOFF 0x08
+	#define LCDC_DISPLAY_ON 0x04
+	#define LCDC_DISPLAY_OFF 0
+	#define LCDC_CURSOR_ON 0x02
+	#define LCDC_CURSOR_OFF 0
+	#define LCDC_CURSOR_BLINKING_MODE 0x01
+
+// Function set
+#define LCDC_FUNC 0x20
+	#define LCDC_FUNC_8B 0x10
+	#define LCDC_FUNC_4B 0
+	#define LCD_FUNC_2L 0x08
+	#define LCD_FUNC_1L 0
+	#define LCD_FUNC_5x10 0x04
+	#define LCD_FUNC_5x7 0
+
+// public functions
+void init_lcd(void);
+void data_dir_out(void);
+void data_dir_in(void);
 void lcd_write_byte(unsigned char _data);
 void lcd_write_cmd(uint8_t cmd);
 void lcd_write_data(uint8_t data);
+void lcd_cls(void);
+void lcd_str(char * str);
 uint8_t lcd_read_byte(void);
 uint8_t check_BF(void);
 
