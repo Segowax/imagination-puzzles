@@ -5,12 +5,12 @@
  *      Author: KosmicznyBandyta
  */
 
-#include "lcd/lcd.h"
+#include "lcd_hd44780/lcd.h"
 
 int main() {
 
 	init_lcd();
-	lcd_str("Test test 123..");
+	lcd_str("Test");
 
 	_delay_ms(1000);
 

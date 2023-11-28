@@ -5,7 +5,7 @@
  *      Author: KosmicznyBandyta
  */
 
-#include "lcd.h"
+#include "../lcd_hd44780/lcd.h"
 
 // private zone
 static inline void lcd_send_half(uint8_t data);
@@ -166,7 +166,8 @@ void lcd_write_data(uint8_t data) {
 }
 
 void lcd_str(char *str) {
-	while(*str) lcd_write_data(*str++);
+	while (*str)
+		lcd_write_data(*str++);
 }
 
 void lcd_cls(void) {
@@ -175,3 +176,33 @@ void lcd_cls(void) {
 	_delay_ms(4.9);
 #endif
 }
+
+#if USE_LCD_CURSOR_HOME == 1
+void lcd_home(void) {
+	lcd_write_cmd(LCDC_CLEAR | LCDC_HOME);
+#if USE_RW == 0
+		_delay_ms(4.9);
+#endif
+}
+#endif
+
+#if USE_LCD_CURSOR_ON == 1
+void lcd_cursor_on(void) {
+	lcd_write_cmd(LCDC_ONOFF | LCDC_DISPLAY_ON | LCDC_CURSOR_ON);
+}
+
+void lcd_cursor_off(void) {
+	lcd_write_cmd(LCDC_ONOFF | LCDC_DISPLAY_ON);
+}
+#endif
+
+#if USE_LCD_CURSOR_BLINK == 1
+void lcd_cursor_blink_on(void) {
+	lcd_write_cmd(
+	LCDC_ONOFF | LCDC_DISPLAY_ON | LCDC_CURSOR_ON | LCDC_CURSOR_BLINKING_MODE);
+}
+
+void lcd_cursor_blink_off(void) {
+	lcd_write_cmd(LCDC_ONOFF | LCDC_DISPLAY_ON);
+}
+#endif

@@ -75,11 +75,17 @@
 void init_lcd(void);
 void data_dir_out(void);
 void data_dir_in(void);
+void lcd_cls(void);
+void lcd_cursor_on(void);
+void lcd_cursor_off(void);
+void lcd_cursor_blink_on(void);
+void lcd_cursor_blink_off(void);
+void lcd_home(void);
+void lcd_str(char * str);
 void lcd_write_byte(unsigned char _data);
 void lcd_write_cmd(uint8_t cmd);
 void lcd_write_data(uint8_t data);
-void lcd_cls(void);
-void lcd_str(char * str);
+
 uint8_t lcd_read_byte(void);
 uint8_t check_BF(void);
 

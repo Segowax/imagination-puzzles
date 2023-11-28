@@ -9,10 +9,14 @@
 #define CONFIGURATION_H_
 
 /* Adjust these configurations */
-/* LCD */
+/* LCD Config */
 #define LCD_Y 2
 #define LCD_X 16
 #define USE_RW 1
+#define USE_LCD_CURSOR_HOME 0
+#define USE_LCD_CURSOR_ON 0
+#define USE_LCD_CURSOR_BLINK 0
+/* LCD Pins*/
 #define LCD_D7PORT C
 #define LCD_D6PORT C
 #define LCD_D5PORT C
