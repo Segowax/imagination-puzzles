@@ -166,8 +166,9 @@ void lcd_write_data(uint8_t data) {
 }
 
 void lcd_str(char *str) {
-	while (*str)
-		lcd_write_data(*str++);
+	register char sign;
+	while ((sign = *str++))
+		lcd_write_data((sign >= 0x80 && sign <= 0x87) ? (sign & 0x07) : sign);
 }
 
 void lcd_cls(void) {

@@ -10,7 +10,8 @@
 int main() {
 
 	init_lcd();
-	lcd_str("Test");
+	char tab[] = "Test" "\x7f" "Nas";
+	lcd_str(tab);
 
 	_delay_ms(1000);
 
