@@ -9,6 +9,8 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/pgmspace.h>
+#include <avr/eeprom.h>
 
 #ifndef LCD_LCD_H_
 #define LCD_LCD_H_
@@ -72,19 +74,20 @@
 	#define LCD_FUNC_5x7 0
 
 // public functions
-void init_lcd(void);
-void data_dir_out(void);
-void data_dir_in(void);
 void lcd_cls(void);
 void lcd_cursor_on(void);
 void lcd_cursor_off(void);
 void lcd_cursor_blink_on(void);
 void lcd_cursor_blink_off(void);
+void lcd_defchar(uint8_t nr, const uint8_t *def_znak);
+void lcd_defchar_E(uint8_t nr, uint8_t *def_znak);
+void lcd_defchar_P(uint8_t nr, const uint8_t *def_znak);
 void lcd_home(void);
-void lcd_str(char * str);
-void lcd_write_byte(unsigned char _data);
-void lcd_write_cmd(uint8_t cmd);
-void lcd_write_data(uint8_t data);
+void lcd_init(void);
+void lcd_int(int val);
+void lcd_str(char *str);
+void lcd_str_E(char *str);
+void lcd_str_P(char *str);
 
 uint8_t lcd_read_byte(void);
 uint8_t check_BF(void);

@@ -7,17 +7,25 @@
 
 #include "../lcd_hd44780/lcd.h"
 
-// private zone
+// ********* private zone **********
+void data_dir_out(void);
+void data_dir_in(void);
 static inline void lcd_send_half(uint8_t data);
+void lcd_write_byte(unsigned char _data);
+void lcd_write_cmd(uint8_t cmd);
+void lcd_write_data(uint8_t data);
 
-void init_lcd(void) {
+// to remove the warning?
+char* itoa(int, char*, int);
+// *********************************
+
+void lcd_init(void) {
 	data_dir_out();
 	DDR(LCD_RSPORT) |= (1 << LCD_RS);
 	DDR(LCD_EPORT) |= (1 << LCD_E);
 #if USE_RW == 1
 	DDR(LCD_RWPORT) |= (1 << LCD_RW);
 #endif
-
 	PORT(LCD_RSPORT) |= (1 << LCD_RS);
 	PORT(LCD_EPORT) |= (1 << LCD_E);
 #if USE_RW == 1
@@ -170,6 +178,75 @@ void lcd_str(char *str) {
 	while ((sign = *str++))
 		lcd_write_data((sign >= 0x80 && sign <= 0x87) ? (sign & 0x07) : sign);
 }
+
+#if USE_LCD_STR_P == 1
+void lcd_str_P(char *str) {
+	register char sign;
+	while ((sign = pgm_read_byte(str++)))
+		lcd_write_data((sign >= 0x80 && sign <= 0x87) ? (sign & 0x07) : sign);
+}
+#endif
+
+#if USE_LCD_STR_E == 1
+void lcd_str_E(char *str) {
+	register char sign;
+	while (1) {
+		sign = eeprom_read_byte((uint8_t*) (str++));
+		if (!sign || sign == 0xFF)
+			break;
+		else
+			lcd_write_data(
+					(sign >= 0x80 && sign <= 0x87) ? (sign & 0x07) : sign);
+	}
+}
+#endif
+
+#if USE_LCD_INT == 1
+void lcd_int(int val) {
+	char bufor[17];
+	lcd_str(itoa(val, bufor, 10));
+}
+#endif
+
+#if USE_LCD_HEX == 1
+void lcd_hex(int val) {
+	char bufor[17];
+	lcd_str(itoa(val, bufor, 16));
+}
+#endif
+
+#if USE_LCD_DEFCHAR
+void lcd_defchar(uint8_t nr, const uint8_t *def_znak) {
+	register uint8_t i, c;
+	lcd_write_cmd(64 + ((nr & 0x07) * 8));
+	for (i = 0; i < 8; i++) {
+		c = *(def_znak++);
+		lcd_write_data(c);
+	}
+}
+#endif
+
+#if USE_LCD_DEFCHAR_E
+void lcd_defchar_E(uint8_t nr, uint8_t *def_znak) {
+	register uint8_t i, c;
+	lcd_write_cmd(64 + ((nr & 0x07) * 8));
+	for (i = 0; i < 8; i++) {
+		c = eeprom_read_byte(def_znak++);
+		lcd_write_data(c);
+	}
+}
+#endif
+
+#if USE_LCD_DEFCHAR_P
+void lcd_defchar_P(uint8_t nr, const uint8_t *def_znak) {
+	register uint8_t i, c;
+	lcd_write_cmd(64 + ((nr & 0x07) * 8));
+	for (i = 0; i < 8; i++) {
+		c = pgm_read_byte(def_znak++);
+		lcd_write_data(c);
+	}
+}
+#endif
 
 void lcd_cls(void) {
 	lcd_write_cmd(LCDC_CLEAR);

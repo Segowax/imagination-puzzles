@@ -16,6 +16,13 @@
 #define USE_LCD_CURSOR_HOME 0
 #define USE_LCD_CURSOR_ON 0
 #define USE_LCD_CURSOR_BLINK 0
+#define USE_LCD_STR_P 1
+#define USE_LCD_STR_E 1
+#define USE_LCD_INT 1
+#define USE_LCD_HEX 1
+#define USE_LCD_DEFCHAR 1
+#define USE_LCD_DEFCHAR_E 1
+#define USE_LCD_DEFCHAR_P 1
 /* LCD Pins*/
 #define LCD_D7PORT C
 #define LCD_D6PORT C
