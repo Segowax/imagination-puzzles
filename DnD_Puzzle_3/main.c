@@ -9,7 +9,7 @@
 
 const uint8_t tab1[] = { 0, 0, 14, 1, 15, 17, 15, 2 };
 const uint8_t tab2[] PROGMEM = { 0, 0, 14, 1, 15, 17, 15, 2 };
-uint8_t tab3[] EEMEM = { 0, 0, 14, 1, 15, 17, 15, 2 };
+const uint8_t tab3[] EEMEM = { 0, 0, 14, 1, 15, 17, 15, 2 };
 
 //private zone
 void display_text(char text[], uint16_t ms);
@@ -23,12 +23,12 @@ int main() {
 
 	lcd_defchar(0x80, tab1);
 	lcd_defchar_P(0x81, tab2);
-	lcd_defchar_E(0x82, tab3);
+	lcd_defchar_E(0x86, tab3);
 
 	while (1) {
 		display_text("Test " "\x80", 1000);
 		display_text("Test1 " "\x81", 1000);
-		display_text("Test2 " "\x82", 1000);
+		display_text("Test2 " "\x86", 1000);
 		display_text("Test3 ", 1000);
 	}
 }

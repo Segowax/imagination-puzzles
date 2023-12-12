@@ -80,7 +80,7 @@ void lcd_cursor_off(void);
 void lcd_cursor_blink_on(void);
 void lcd_cursor_blink_off(void);
 void lcd_defchar(uint8_t nr, const uint8_t *def_znak);
-void lcd_defchar_E(uint8_t nr, uint8_t *def_znak);
+void lcd_defchar_E(uint8_t nr, const uint8_t *def_znak);
 void lcd_defchar_P(uint8_t nr, const uint8_t *def_znak);
 void lcd_home(void);
 void lcd_init(void);

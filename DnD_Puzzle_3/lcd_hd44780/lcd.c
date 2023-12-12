@@ -227,7 +227,7 @@ void lcd_defchar(uint8_t nr, const uint8_t *def_znak) {
 #endif
 
 #if USE_LCD_DEFCHAR_E
-void lcd_defchar_E(uint8_t nr, uint8_t *def_znak) {
+void lcd_defchar_E(uint8_t nr, const uint8_t *def_znak) {
 	register uint8_t i, c;
 	lcd_write_cmd(64 + ((nr & 0x07) * 8));
 	for (i = 0; i < 8; i++) {
