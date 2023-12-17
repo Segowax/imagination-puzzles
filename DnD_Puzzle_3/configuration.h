@@ -23,21 +23,24 @@
 #define USE_LCD_DEFCHAR 1
 #define USE_LCD_DEFCHAR_E 1
 #define USE_LCD_DEFCHAR_P 1
+#define USE_LCD_LED 1
 /* LCD Pins*/
 #define LCD_D7PORT C
 #define LCD_D6PORT C
 #define LCD_D5PORT C
 #define LCD_D4PORT C
-#define LCD_D7 3
-#define LCD_D6 2
-#define LCD_D5 1
-#define LCD_D4 0
+#define LCD_D7 0
+#define LCD_D6 1
+#define LCD_D5 2
+#define LCD_D4 3
 #define LCD_RSPORT B
 #define LCD_RWPORT B
 #define LCD_EPORT B
 #define LCD_RS 2
 #define LCD_RW 1
 #define LCD_E 0
+#define LCD_LEDPORT B
+#define LCD_LED 3
 /*******************************/
 
 #endif /* CONFIGURATION_H_ */

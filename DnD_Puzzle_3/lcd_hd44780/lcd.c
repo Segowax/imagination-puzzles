@@ -6,6 +6,10 @@
  */
 
 #include "../lcd_hd44780/lcd.h"
+#include <avr/pgmspace.h>
+#include <avr/eeprom.h>
+#include <avr/io.h>
+#include <util/delay.h>
 
 // ********* private zone **********
 void data_dir_out(void);
@@ -30,6 +34,9 @@ void lcd_init(void) {
 	PORT(LCD_EPORT) |= (1 << LCD_E);
 #if USE_RW == 1
 	PORT(LCD_RWPORT) |= (1 << LCD_RW);
+#endif
+#if USE_LCD_LED
+	DDR(LCD_LEDPORT) |= (1 << LCD_LED);
 #endif
 
 	_delay_ms(15);

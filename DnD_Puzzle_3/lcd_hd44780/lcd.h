@@ -6,11 +6,7 @@
  */
 
 #include "../configuration.h"
-
 #include <avr/io.h>
-#include <util/delay.h>
-#include <avr/pgmspace.h>
-#include <avr/eeprom.h>
 
 #ifndef LCD_LCD_H_
 #define LCD_LCD_H_
@@ -39,9 +35,11 @@
 #define SET_RS PORT(LCD_RSPORT) |= (1 << LCD_RS)
 #define SET_RW PORT(LCD_RWPORT) |= (1 << LCD_RW)
 #define SET_E PORT(LCD_EPORT) |= (1 << LCD_E)
+#define SET_LED PORT(LCD_LEDPORT) |= (1 << LCD_LED)
 #define CLR_RS PORT(LCD_RSPORT) &= ~(1 << LCD_RS)
 #define CLR_RW PORT(LCD_RWPORT) &= ~(1 << LCD_RW)
 #define CLR_E PORT(LCD_EPORT) &= ~(1 << LCD_E)
+#define CLR_LED PORT(LCD_LEDPORT) &= ~(1 << LCD_LED)
 
 /* LCD HD44780 commends */
 // Clear Display
