@@ -6,6 +6,8 @@
  */
 
 #include "../configuration.h"
+#include "../common.h"
+
 #include <avr/io.h>
 
 #ifndef LCD_LCD_H_
@@ -22,15 +24,6 @@
 #define LCD_LINE3 0x10
 #define LCD_LINE4 0x50
 #endif
-
-#define PORT(x) SPORT(x)
-#define SPORT(x) (PORT##x)
-
-#define PIN(x) SPIN(x)
-#define SPIN(x) (PIN##x)
-
-#define DDR(x) SDDR(x)
-#define SDDR(x) (DDR##x)
 
 #define SET_RS PORT(LCD_RSPORT) |= (1 << LCD_RS)
 #define SET_RW PORT(LCD_RWPORT) |= (1 << LCD_RW)
@@ -83,6 +76,7 @@ void lcd_defchar_P(uint8_t nr, const uint8_t *def_znak);
 void lcd_home(void);
 void lcd_init(void);
 void lcd_int(int val);
+void lcd_int_with_label(char* text, int val);
 void lcd_str(char *str);
 void lcd_str_E(char *str);
 void lcd_str_P(char *str);

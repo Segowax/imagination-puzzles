@@ -6,6 +6,9 @@
  */
 
 #include "lcd_hd44780/lcd.h"
+#include "Outputs/outputs.h"
+#include "Inputs/inputs.h"
+
 #include <avr/pgmspace.h>
 #include <avr/eeprom.h>
 #include <util/delay.h>
@@ -19,9 +22,13 @@ void display_text(char text[]);
 void display_text_for(char text[], uint16_t ms);
 
 int main() {
+	inputs_init();
+	outputs_init();
+	pwm_init();
+
 	lcd_init();
 
-	_delay_ms(100);
+	_delay_ms(10);
 
 	// display LED test
 	SET_LED;
@@ -30,17 +37,16 @@ int main() {
 	_delay_ms(100);
 	SET_LED;
 
-	lcd_defchar(0x80, tab1);
-	lcd_defchar_P(0x81, tab2);
-	lcd_defchar_E(0x86, tab3);
-
-	_delay_ms(100);
-
+	OCR2 = 0;
+	display_text("Pulse width [%]: ");
 	while (1) {
-		display_text_for("Test " "\x80", 1000);
-		display_text_for("Test1 " "\x81", 1000);
-		display_text_for("Test2 " "\x86", 1000);
-		display_text_for("Test3 ", 1000);
+		if (is_button_down()) {
+			if (OCR2 == 255)
+				OCR2 = 0;
+			OCR2++;
+			while (is_button_down())
+				;
+		}
 	}
 }
 

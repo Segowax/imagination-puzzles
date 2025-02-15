@@ -42,5 +42,11 @@
 #define LCD_LEDPORT B
 #define LCD_LED 3
 /*******************************/
+/* BUTTONS AND DIODES */
+#define BUTTON_PORT D
+#define BUTTON 6
+#define DIODE_PORT D
+#define DIODE 7
+/*******************************/
 
 #endif /* CONFIGURATION_H_ */

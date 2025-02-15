@@ -19,8 +19,13 @@ void lcd_write_byte(unsigned char _data);
 void lcd_write_cmd(uint8_t cmd);
 void lcd_write_data(uint8_t data);
 
-// to remove the warning?
+// to remove the warnings?
 char* itoa(int, char*, int);
+size_t strlen( const char * str );
+char* strcpy( char * dest, const char * src );
+char* strcat( char * destination, const char * source );
+void* malloc( size_t size );
+void free(void *ptr);
 // *********************************
 
 void lcd_init(void) {
@@ -212,6 +217,19 @@ void lcd_str_E(char *str) {
 void lcd_int(int val) {
 	char bufor[17];
 	lcd_str(itoa(val, bufor, 10));
+}
+
+void lcd_int_with_label(char* text, int val) {
+	lcd_cls();
+	char bufor[17];
+	char* part1 = text;
+	char* part2 = itoa(val, bufor, 10);
+	char *result = malloc(strlen(part1) + strlen(part2) + 1); // +1 for the null-terminator
+    strcpy(result, part1);
+    strcat(result, part2);
+
+    lcd_str(result);
+    free(result);
 }
 #endif
 
