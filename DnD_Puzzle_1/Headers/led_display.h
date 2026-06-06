@@ -1,7 +1,7 @@
 /*
  * ledDisplay.h
  *
- *  Created on: 30 paŸ 2022
+ *  Created on: 30 paï¿½ 2022
  *      Author: KosmicznyBandyta
  */
 
@@ -52,7 +52,7 @@ extern volatile uint8_t digit3;
 extern volatile uint8_t digit4;
 extern volatile uint8_t lang;
 
-// Methos declarations
+// Methods declarations
 void init_led_display();
 void dispose_led_display();
 void display_number(uint16_t number);

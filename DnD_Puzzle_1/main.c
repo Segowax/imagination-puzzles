@@ -18,10 +18,10 @@ int main(void) {
 
 	// enable global interrupts - secret function
 	sei();
-
-#if IS_DISPLAY_TEST == 1
+	_delay_ms(1000);
+#if IS_DISPLAY_TEST == 10
 	while (1)
-		display_number(6054);
+		display_number(9000);
 #else
 	uint16_t number = count_to_zero_in(600);
 
@@ -29,9 +29,9 @@ int main(void) {
 		if (number != 0 || !IS_PHOTOTRANSISTOR_DOWN)
 			number = count_to_zero_continue(number);
 		if (IS_PHOTOTRANSISTOR_DOWN && IS_BUTTON_DOWN) {
-			PORT(SPEAKER_PORT) &= ~(1 << SPEAKER);
+			SPEAKER_TURN_ON;
 			_delay_ms(1000);
-			PORT(SPEAKER_PORT) |= (1 << SPEAKER);
+			SPEAKER_TURN_OFF;
 			dispose_led_display();
 			break;
 		}

@@ -9,7 +9,5 @@
 
 void init_outputs() {
 	// set all outputs
-	DDR(SPEAKER_PORT) |= (1 << SPEAKER);
-	// set state of all outputs connected to VCC to high
-	PORT(SPEAKER_PORT) |= (1 << SPEAKER);
+	DDR(SPEAKER_PORT) |= (1 << SPEAKER_PIN);
 }

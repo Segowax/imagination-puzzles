@@ -31,7 +31,7 @@ void init_led_display() {
 	// set all segments as outputs
 	DDR(PORT_FOR_ALL_SEGMENTS) = 0b11111111;
 
-	// send hight sate to each segment (turn off)
+	// send high state to each segment (turn off)
 	PORT(PORT_FOR_ALL_SEGMENTS) = 0b11111111;
 
 	// Set Timer0

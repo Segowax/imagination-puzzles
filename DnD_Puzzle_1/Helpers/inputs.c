@@ -18,7 +18,6 @@ void init_inputs() {
 	PORT(BUTTON_PORT) |= (1 << BUTTON);
 	PORT(SECRET_PORT) |= (1 << SECRET);
 
-	// Enable INT2 interrupt
-	MCUCSR |= (1 << ISC2); // Rising edge on INT2 activates the interrupt
-	GICR |= (1 << INT2); // External Interrupt Request 2 Enable
+	// Enable INT1 interrupt
+	GICR |= (1 << INT1); // External Interrupt Request 1 Enable
 }

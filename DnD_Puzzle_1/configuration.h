@@ -10,25 +10,25 @@
 
 /* Adjust these configurations */
 
-#define PHOTOTRANSITOR_PORT B
-#define PHOTOTRANSITOR 0
-#define BUTTON_PORT B
-#define BUTTON 1
-#define SECRET_PORT B
-#define SECRET 2
+#define BUTTON_PORT D
+#define BUTTON 6
+#define PHOTOTRANSITOR_PORT D
+#define PHOTOTRANSITOR 7
+#define SECRET_PORT D
+#define SECRET 3
 #define SPEAKER_PORT D
-#define SPEAKER 0
+#define SPEAKER_PIN 5
 
 /* LED display */
-#define ANODE1_PORT A
-#define ANODE1 0
-#define ANODE2_PORT A
-#define ANODE2 1
-#define ANODE3_PORT A
-#define ANODE3 2
-#define ANODE4_PORT A
-#define ANODE4 3
-#define PORT_FOR_ALL_SEGMENTS C
+#define ANODE1_PORT B
+#define ANODE1 4
+#define ANODE2_PORT B
+#define ANODE2 5
+#define ANODE3_PORT B
+#define ANODE3 6
+#define ANODE4_PORT B
+#define ANODE4 7
+#define PORT_FOR_ALL_SEGMENTS A
 #define SEGMENT_A 0
 #define SEGMENT_B 1
 #define SEGMENT_C 2
